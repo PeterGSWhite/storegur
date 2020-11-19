@@ -6,16 +6,12 @@ import random
 class PngEncoder:
     def __init__(self, seed=None):
         self._seed = seed
-        self.n = 0
 
     def _random_shift(self, value, direction=1):
         """Takes a value between 0 and 255 and randomises it to a different value. 
             If direction set to -1, then it can unshift previously shifted values (assuming the same random seed was initialised each time) """
         shift_factor = random.randint(0, 255)
         shifted = (value + direction*shift_factor) % 256
-        if self.n % 1000 == 0:
-            print(value, shift_factor, shifted)
-        self.n += 1
         return shifted
 
     def encode_as_image(self, data):
@@ -43,7 +39,6 @@ class PngEncoder:
             else:
                 x += 1
         return img
-
     def decode_image_bytes(self, pixel_values):
         """Decodes bytes in PIL PNG file into utf-8 string"""   
         random.seed(self._seed)
@@ -83,16 +78,3 @@ class PngEncoder:
         image_data = iter(image.getdata())
         output = self.decode_image_bytes(self._pixel_value_generator(image_data))
         return output
-
-MODE = 0
-if __name__ == "__main__":
-    if MODE:
-        with open('japanese_wiki.txt', 'r') as f:
-            encode_as_image(f.read(), 'jpwik')
-    else:
-        img = Image.open('./LSD6KyO.png')
-        image_data = iter(img.getdata())
-        output = decode_image_bytes(pixel_value_generator(image_data))
-        with open('jpoutput.html', 'w+') as f:
-            for c in output:
-                f.write(c)
