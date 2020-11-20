@@ -51,16 +51,16 @@ class PngEncoder:
                 first = self._random_shift(next(pixel_values), direction=-1)
                 if not first: # If first byte is 0, there is nothing left to decode
                     break
+                if 127 < first < 191: # Json decoding breaks without this - not sure how yet
+                    break
                 values.append(first)
-                if first > 127: # First byte is 110XXXXX or greater, so at least 1 continuation byte
+                if first > 191: #127: # First byte is 110XXXXX or greater, so at least 1 continuation byte
                     values.append(self._random_shift(next(pixel_values), direction=-1))
                 if first > 223: # First byte is 1110XXXX or greater, so at least a second continuation byte
                     values.append(self._random_shift(next(pixel_values), direction=-1))
                 if first > 239: # First byte is 11110XXX or greater, so a third continuation byte
                     values.append(self._random_shift(next(pixel_values), direction=-1))
-
                 output.append(bytes(values).decode('utf-8'))
-
             except StopIteration:
                 end_of_file = True
         print('LEFTOVER', values)
