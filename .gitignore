@@ -1,3 +1,5 @@
 config.py
 venv/*
 *.sqlite
+.vscode*
+__pycache__*
