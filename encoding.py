@@ -4,7 +4,7 @@ from io import BytesIO
 import random
 
 class PngEncoder:
-    def __init__(self, seed=None):
+    def __init__(self, seed):
         self._seed = seed
 
     def _random_shift(self, value, direction=1):
@@ -30,7 +30,8 @@ class PngEncoder:
             second = data_bytes[i+1] if i + 1 < len(data_bytes) else 0
             third = data_bytes[i+2] if i + 2 < len(data_bytes) else 0
             pixel = (self._random_shift(first), self._random_shift(second), self._random_shift(third))
-
+            print(first, second, third)
+            print(pixel)
             # Put pixel into next available slot in image space
             img.putpixel((x, y), pixel)
             if x + 1 == size:
@@ -60,7 +61,13 @@ class PngEncoder:
                     values.append(self._random_shift(next(pixel_values), direction=-1))
                 if first > 239: # First byte is 11110XXX or greater, so a third continuation byte
                     values.append(self._random_shift(next(pixel_values), direction=-1))
-                output.append(bytes(values).decode('utf-8'))
+                print(values)
+                try:
+                    output.append(bytes(values).decode('utf-8'))
+                except UnicodeDecodeError:
+                    # Sometimes there is invalid data appended to the end of an image
+                    print('Stopped reading file due to UnicodeDecodeError')
+                    end_of_file = True
             except StopIteration:
                 end_of_file = True
         print('LEFTOVER', values)
