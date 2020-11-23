@@ -109,5 +109,3 @@ class SDIdStore(ImgurIdStore):
         self.db[key] = value
     def db_get(self, key):
         return self.db[key]
-
-db = SDIdStore('test', client_id, token, seed)

@@ -30,8 +30,6 @@ class PngEncoder:
             second = data_bytes[i+1] if i + 1 < len(data_bytes) else 0
             third = data_bytes[i+2] if i + 2 < len(data_bytes) else 0
             pixel = (self._random_shift(first), self._random_shift(second), self._random_shift(third))
-            print(first, second, third)
-            print(pixel)
             # Put pixel into next available slot in image space
             img.putpixel((x, y), pixel)
             if x + 1 == size:
@@ -61,7 +59,6 @@ class PngEncoder:
                     values.append(self._random_shift(next(pixel_values), direction=-1))
                 if first > 239: # First byte is 11110XXX or greater, so a third continuation byte
                     values.append(self._random_shift(next(pixel_values), direction=-1))
-                print(values)
                 try:
                     output.append(bytes(values).decode('utf-8'))
                 except UnicodeDecodeError:
@@ -70,7 +67,8 @@ class PngEncoder:
                     end_of_file = True
             except StopIteration:
                 end_of_file = True
-        print('LEFTOVER', values)
+        if values:
+            print('LEFTOVER', values)
         return output
     def _pixel_value_generator(self, image):
         """Unpack the pixel values from their tuples so they can be iterated over"""
