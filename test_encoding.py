@@ -82,4 +82,13 @@ class TestEncoder(unittest.TestCase):
                 decoded_data = ''.join(decoded_characters)
                 self.assertEqual(decoded_data, i)
 
-    
+    def test_encode_uses_seed(self):
+        """Test that decoding with the wrong seed yields the wrong result"""
+        i = 'Hello, world!'
+        encoded_image = self.encoder.encode_as_image(i)
+        encoded_pixels = self.encoder._pixel_value_generator(encoded_image.getdata()) # Makes PIL Image iterable
+        # Change the seed before decoding
+        self.encoder._seed = 'Wrong seed'
+        decoded_characters = self.encoder.decode_image_bytes(encoded_pixels)
+        decoded_data = ''.join(decoded_characters)
+        self.assertNotEqual(decoded_data, i)
