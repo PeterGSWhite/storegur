@@ -5,7 +5,6 @@ from io import BytesIO
 from encoding import PngEncoder
 import tempfile
 import json
-from config import client_id, token, seed
 
 from sqlitedict import SqliteDict
 class ImgurIdStore:
