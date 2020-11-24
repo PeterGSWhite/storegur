@@ -27,9 +27,9 @@ git clone https://github.com/PeterGSWhite/storegur.git
 
 2. Create venv and install python modules<br/>
 ```
-python3 -m venv api/venv
-(POSIX)	source api/venv/bin/activate
-(Windows) api/venv/Scripts/activate
+python3 -m venv venv
+(POSIX)	source venv/bin/activate
+(Windows) venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
