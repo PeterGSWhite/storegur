@@ -28,7 +28,7 @@ class ImgurIdStore:
 
         # Upload the image
         print('Uploading image...')
-        with tempfile.NamedTemporaryFile(mode="wb") as temp:
+        with tempfile.NamedTemporaryFile(mode="wb", delete=False) as temp:
             image.save(temp.name, format='PNG')
 
             response = self.imgur_client.image_upload(temp.name, title, description)
