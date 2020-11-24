@@ -21,6 +21,9 @@ class PngEncoder:
             i.e 0 = 00000000 whereas 255 = 11111111"""
         random.seed(self._seed)
         data_bytes = bytes(data, encoding='utf-8')
+        if len(data_bytes) > 19500000:
+            # Imgur limits static files to 20MB per upload.
+            raise ValueError("Data can not greater than 19MB in size")
         size = math.ceil(math.sqrt(len(data_bytes)/3)) # Calculate how big of image is needed
         img = Image.new('RGB', (size, size))
         x, y = 0, 0

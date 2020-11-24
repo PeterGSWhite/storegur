@@ -65,7 +65,8 @@ class ImgurIdStore:
         """Uploads file and returns the imgur Id of it's image"""
         print('Encoding', source_path, 'as image...')
         with open(source_path, 'r') as f:
-            imgur_id = self.upload_string(f.read(), title, description)
+            # Using strings even for file upload as performance should be fine given the restrictions (20MB per upload, and no concurrent uploads)
+            imgur_id = self.upload_string(f.read(), title, description) 
             self.db_put(key, imgur_id)
 
     def get_file(self, key, target_path):
