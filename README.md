@@ -3,7 +3,7 @@
 <h3 align="center">STOREGUR</h3>
 
   <p align="center">
-    A proof of concept for exploiting Imgur and using it as a personal file store for arbitrary file types.<br/> Encodes UTF-8 encoded data into PNG images which can then be stored on Imgur for later retrieval.
+    A proof of concept for exploiting Imgur by using it as a personal file store for arbitrary file types.<br/> Encodes UTF-8 encoded data into PNG images which can then be stored on Imgur for later retrieval.
     <br/>
   </p>
 
