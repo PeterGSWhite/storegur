@@ -17,7 +17,7 @@
 ```
 https://www.python.org/download/releases/3.0/
 ```
-* Your own Imgur API Key (due to the nature of the app, I don't want people using mine and getting my access blocked).
+* Your own Imgur API Key (due to the nature of the app, I don't want people using mine and getting my access blocked).<br/>
 Getting a client_id and token only takes a few seconds:
 https://api.imgur.com/oauth2/addclient
 
