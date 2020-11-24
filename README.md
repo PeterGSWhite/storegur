@@ -17,12 +17,15 @@
 ```
 https://www.python.org/download/releases/3.0/
 ```
+* Your own Imgur API Key (due to the nature of the app, I don't want people using mine and getting my access blocked).
+https://api.imgur.com/oauth2/addclient
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo and cd in
 ```
 git clone https://github.com/PeterGSWhite/storegur.git
+cd storegur
 ```
 
 2. Create venv and install python modules<br/>
