@@ -44,10 +44,10 @@ from config import client_id, token # <- You need your own Imgur API credentials
 seed = "Any string you choose - is used to set the encryption"
 
 db = SDIdStore('db_name', client_id, token, seed)
-# The below method
+"""The below method
   1. Encrypts data into a PNG image
   2. Uploads the image to Imgur
-  3. Saves the Imgur Id to a Key-Value store so you can retrieve it later
+  3. Saves the Imgur Id to a Key-Value store so you can retrieve it later"""
 db.store_file('Abra Cadabra', './a_file_of_data.txt', title='optional metadata', description='optional metadata')
 
 # Then retrieval is the same but in reverse
