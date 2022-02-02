@@ -4,9 +4,7 @@
 
   <p align="center">
   
-  In theory, any data of any file type can be transformed into an image and then uploaded to Imgur for free.  <br/>
-  
-    This is a proof of concept for exploiting Imgur by using it as a personal file store for arbitrary file types.<br/> Encodes UTF-8 encoded data into PNG images which can then be stored on Imgur for later retrieval.
+  In theory, any data of any file type can be transformed into an image and then uploaded to Imgur for free.  <br/> This is a proof of concept for exploiting Imgur by using it as a personal file store for arbitrary file types.<br/> Encodes UTF-8 encoded data into PNG images which can then be stored on Imgur for later retrieval.
   
     <br/>
   </p>
